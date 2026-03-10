@@ -2,8 +2,6 @@
 #include "wx/gdicmn.h"
 #include <wx/dcbuffer.h>
 #include <wx/timer.h>
-#include <algorithm>
-
 
 wxBEGIN_EVENT_TABLE(VideoDataPanel, wxPanel)
     EVT_PAINT(VideoDataPanel::OnPaint)
