@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
 project(wxGrabber)
 
 if(MSVC)
@@ -56,7 +59,9 @@ else()
     list(REMOVE_ITEM dlls_GLOB ${dllsDebug_GLOB})
 endif()
 
-add_custom_command(TARGET wxGrabber POST_BUILD          # Adds a post-build event to MyTest
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+ add_custom_command(TARGET wxGrabber POST_BUILD          # Adds a post-build event to MyTest
     COMMAND ${CMAKE_COMMAND} -E copy_if_different           # which executes "cmake - E copy_if_different..."
         ${dlls_GLOB}                                        # <--this is in-file
         $<TARGET_FILE_DIR:wxGrabber>)                   # <--this is out-file path
+endif()
