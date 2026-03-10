@@ -34,7 +34,9 @@
 #include <wx/propgrid/advprops.h>
 #include <wx/textdlg.h>
 #include <wx/display.h>
+#if defined(__WXMSW__)
 #include <wx/msw/winundef.h>
+#endif
 
 #if defined(__WXMSW__)
     #include <windows.h>
@@ -71,9 +73,9 @@ public:
 };
 
 // Add main function for wxWidgets application
-int main(int argc, char **argv) {
+/*int main(int argc, char **argv) {
     return wxEntry(argc, argv);
-}
+}*/
 
 PropertyEditDialog::PropertyEditDialog(wxWindow* parent, const wxString& title, const wxString& propId, const wxString& value)
     : wxDialog(parent, wxID_ANY, title, wxDefaultPosition, wxSize(400, -1), wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER),

@@ -2,6 +2,8 @@
 #include "wx/gdicmn.h"
 #include <wx/dcbuffer.h>
 #include <wx/timer.h>
+#include <algorithm>
+
 
 wxBEGIN_EVENT_TABLE(VideoDataPanel, wxPanel)
     EVT_PAINT(VideoDataPanel::OnPaint)
@@ -112,7 +114,7 @@ void VideoDataPanel::SetCurrentPositionMs(int currentPositionMs) {
         m_currentFrameIndex = 0;
         m_currentFrame = wxImage();
     } else {
-        m_currentFrameIndex = std::min(m_currentFrameIndex, m_frames.size() - 1);
+        m_currentFrameIndex = std::min(m_currentFrameIndex, (uint64_t)(m_frames.size() - 1));
         //logDebug("SetCurrentPositionMs: m_currentFrameIndex = " + std::to_string(m_currentFrameIndex) + " m_frames.size() = " + std::to_string(m_frames.size()));
         m_currentFrame = m_frames[m_currentFrameIndex];
     }
